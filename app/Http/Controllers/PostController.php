@@ -45,8 +45,8 @@ class PostController extends Controller
         $post = Post::create($data);
         $post->tags()->attach(request()->tags);
 
-        // kembali ke halaman post
-        return redirect()->to('/post');
+        // kembali ke halaman post sambil membawa session
+        return redirect('/post')->with('created', 'New post has been created!');
     }
 
     public function edit(Post $post)
@@ -77,8 +77,8 @@ class PostController extends Controller
         $post->update($data);
         $post->tags()->sync(request()->tags);
 
-        // kembali ke halaman post
-        return redirect()->to('/post');
+        // kembali ke halaman post sambil membawa session
+        return redirect('/post')->with('updated', 'The post has been updated!');
     }
 
     public function delete(Post $post)
@@ -87,6 +87,7 @@ class PostController extends Controller
         $post->tags()->detach();
         $post->delete();
 
-        return redirect()->to('/post');
+        // kembali ke halaman post sambil membawa session
+        return redirect('/post')->with('deleted', 'The post has been deleted!');
     }
 }

@@ -13,6 +13,7 @@
 <body>
     @include('layouts/navigation')
     <div class="mx-5 mt-4">
+        @include('layouts/flashMessage')
         @yield('content')   
     </div>
     <script src="/js/jquery-3.5.1.js"></script>
